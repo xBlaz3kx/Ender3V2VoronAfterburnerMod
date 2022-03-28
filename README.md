@@ -70,8 +70,10 @@ There are instances of running Fluidd and Klipper in Docker, so you could also t
 
 To install Klipper:
 
+    ```
     cd klipper/
     make menuconfig
+    ```
 
 *This step is for SKR Mini E3 V2*
 
@@ -80,14 +82,17 @@ To install Klipper:
     - STM32F103
 2. Bootloader Offset: 28KiB bootloader
 3. USB for communication
-4. Enter the USB ID. You can find them by lsusb -v. Vendor ID should be 0x1eaf, USB Device ID should be 0x0004 and USB
+4. Enter the USB ID. You can find them by `lsusb -v`. Vendor ID should be `0x1eaf`, USB Device ID should be `0x0004` and USB
    Serial Number is the "iSerial" from lsusb -v, so 0.
-5. Put !PC13 into the CPIO Pins
+5. Put !PA14 into the GPIO Pins
 6. Save the config
 
 Then compile the firmware:
 
-> make
+```
+make clean #use when updating firmware!
+make
+```
 
 When compiled, copy and rename the **klipper.bin** file in _/klipper/out/_ folder to **firmware.bin** (check your board
 for naming convention) and copy it to an SD card. Turn off the printer and insert the card. Turn on the printer. The
@@ -95,8 +100,9 @@ firmware should be flashed.
 
 Then find the USB ID:
 
-> ls /dev/serial/by-id/*
-
+``` 
+ ls /dev/serial/by-id/*
+```
 Change the serial in **printer.cfg**:
 
 ```
